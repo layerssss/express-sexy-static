@@ -37,7 +37,7 @@ All supported friendly views:
 
 ### Be sexy
 
-A few crafted <a id="themes">sexy themes<a> are shiped with SexyStatic. Try them and pick one.
+A few crafted <a id="themes">sexy themes</a> are shiped with SexyStatic. Try them and pick one.
 
     TODO list themes and previews
 
