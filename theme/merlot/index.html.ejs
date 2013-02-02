@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/pygment_trac.css"/>
+    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/icomoon.css"/>
+
+
+    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/merlot/javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/merlot/javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart();
+        $('[data-action]').click(function(e){
+          var $btn=$(this).parent();
+          if($btn.next().hasClass('block')){
+            $btn.next().remove();
+            return false;
+          }
+          $('.block').remove();
+          
+          switch(this.dataset.action){
+            case 'source':
+              $.ajax({
+                url:this.href,
+                dataType:'text',
+                success:function(data){
+                  $('<pre class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a><code></code></pre>')
+                  .insertAfter($btn).find('code').text(data);
+                }
+              });
+              return false;
+            case 'iframe':
+              var block=$('<blockquote class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a><iframe style="width:100%;height:100%;" src="'+this.href+'"></iframe></blockquote>')
+              .insertAfter($btn);
+              setTimeout(function(){
+                block.height($(block).width());
+              },100);
+              return false;
+            case 'image':
+              var block=$('<blockquote class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a><img style="max-width:90%" src="'+this.href+'"/></blockquote>')
+              .insertAfter($btn);
+              return false;
+          }
+        });
+      });
+    </script>
+    <style type="text/css">
+      .block{
+        position: relative;
+      }
+      .block>.close{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+    <title>Express-sexy-static by pansafe</title>
+  </head>
+
+  <body>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Viewing <%=path[path.length-1].basename %></h1>
+            <h2>
+              <% path.forEach(function(seg){ %>
+                <a href="<%=seg.path %>"><%=seg.basename %></a>
+                /
+              <% }) %>
+            </h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="?download=zip" class="zip"><em>download</em> .ZIP</a>
+          <a href="?download=tgz" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1><%=path[path.length-1].basename %></h1>
+        <ul>
+          <li>
+            <a href="<%=path_to_root%>">[root]</a>
+          </li>
+          <li>
+            <a href="..">..</a>
+          <li>
+          <% items.forEach(function(item){ %>
+            <li>
+              <a href="<%=encodeURIComponent(item.basename)%>"><%-item.icon%><%=item.basename%></a>
+              <% if(item.type=='text'||item.type=='html') {%>
+                <a href="<%=encodeURIComponent(item.basename)%>" data-action="source"><em>source</em></a>
+              <% } %>
+              <% if(item.type=='html') {%>
+                <a href="<%=encodeURIComponent(item.basename)%>" data-action="iframe"><em>preview</em></a>
+              <% } %>
+              <% if(item.type=='image') {%>
+                <a href="<%=encodeURIComponent(item.basename)%>" data-action="image"><em>preview</em></a>
+              <% } %>
+            </li>
+          <% }) %>
+        </ul>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this directory shown via <a href="https://github.com/pansafe/express-sexy-static">SexyStatic</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Theme ported from <a href="http://pages.github.com">GitHub Pages</a>'s Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

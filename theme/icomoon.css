@@ -1,0 +1,65 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot');
+	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.svg#icomoon') format('svg'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"]:before {
+*/
+.icon-pictures:before, .icon-file:before, .icon-file-xml:before, .icon-film:before, .icon-music:before, .icon-puzzle:before, .icon-file-zip:before, .icon-folder:before, .icon-cube:before, .icon-share:before {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-pictures:before {
+	content: "\e006";
+}
+.icon-file:before {
+	content: "\e013";
+}
+.icon-file-xml:before {
+	content: "\e131";
+}
+.icon-film:before {
+	content: "\e00b";
+}
+.icon-music:before {
+	content: "\e009";
+}
+.icon-puzzle:before {
+	content: "\e067";
+}
+.icon-file-zip:before {
+	content: "\e130";
+}
+.icon-folder:before {
+	content: "\e017";
+}
+.icon-cube:before {
+	content: "\e065";
+}
+.icon-share:before {
+	content: "\e0d1";
+}
