@@ -39,7 +39,7 @@ All supported friendly views:
 
 A few crafted <a id="themes">sexy themes</a> are shiped with SexyStatic. Try them and pick one.
 
-    TODO list themes and previews
+View all themes at [http://sexystatic.micy.in/#themes](http://sexystatic.micy.in/#themes).
 
 ### Be sexy by your self
 
