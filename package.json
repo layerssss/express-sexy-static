@@ -2,7 +2,7 @@
   "name": "express-sexy-static",
   "version": "0.0.0",
   "description": "sexy static content server for express ",
-  "main": "index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "connect": "~2.7.2",
     "iced-coffee-script": "~1.4.0",

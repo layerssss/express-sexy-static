@@ -79,7 +79,7 @@ module.exports = (root, opt)->
     if 0==req.url.indexOf '/sexy_assets/'
       originalUrl = req.url
       req.url = req.url.substring '/sexy_assets/'.length
-      await connect.static(path.join(__dirname, 'theme'), options) req, res, defer err
+      await connect.static(path.join(__dirname, '..', 'theme'), options) req, res, defer err
       return next err if err
       req.url = originalUrl
 
@@ -96,7 +96,7 @@ module.exports = (root, opt)->
     await fs.readdir dstpath, defer err, files
     return next err if err
       
-    files = files.filter filter if options.filter
+    files = files.filter options.filter if options.filter
     if options.hidden
       files = files.filter (file)->file[0]!='.'
     res.locals.items=[]
@@ -125,9 +125,9 @@ module.exports = (root, opt)->
         i++
         seg.path += '../'
       res.locals.path.push seg  
-    await fs.exists path.join(__dirname, 'theme', options.theme, 'index.html.ejs'), defer exists
+    await fs.exists path.join(__dirname, '..', 'theme', options.theme, 'index.html.ejs'), defer exists
     if exists
-      res.render path.join(__dirname, 'theme', options.theme, 'index.html.ejs')
+      res.render path.join(__dirname, '..', 'theme', options.theme, 'index.html.ejs')
     else
       res.render options.theme
 

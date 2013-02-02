@@ -1,0 +1,120 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Express-sexy-static</title>
+  <meta name="description" content="sexy static content server for express">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Express-sexy-static</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">sexy static content server for express</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/pansafe/express-sexy-static/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/pansafe/express-sexy-static/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/pansafe/express-sexy-static" class="code">View Express-sexy-static on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>Sexy Static</h1>
+
+<p>sexy static content server for express.</p>
+
+<h2>Installation</h2>
+
+<p>npm:</p>
+
+<pre><code>npm install express-sexy-static
+</code></pre>
+
+<h2>Usage</h2>
+
+<pre><code>var expressSexyStatic = require('express-sexy-static');
+app.use(new expressSexyStatic(__dirname + '/public'));
+</code></pre>
+
+<h2>Features</h2>
+
+<h3>Not just files</h3>
+
+<p>SexyStatic is a combinition of <code>connect.directory</code>, <code>connect.static</code> and more within a simple middleware. Just use it with:</p>
+
+<pre><code>app.use(expressSexyStatic(__dirname + '/public'));
+</code></pre>
+
+<h3>View like a pro</h3>
+
+<p>SexyStatic is not just a static file server. It can also view documents in a friendly way.</p>
+
+<p>All supported friendly views:</p>
+
+<ul>
+<li>images: simple preview</li>
+<li>html pages: preview via iframe</li>
+<li>text file and source code: view source via ajax</li>
+<li>markdown: preview single markdown file and README.md (rendered via <a href="https://github.com/chjj/marked">marked</a> in browser)</li>
+</ul><h3>Be sexy</h3>
+
+<p>A few crafted <a>sexy themes</a><a> are shiped with SexyStatic. Try them and pick one.</a></p>
+<div>
+<% items.forEach(function(item){
+  if(item.type=='directory'){
+    %><a href="<%=item.basename %>/" style="display:block; position:relative; float:left;width:136px;margin:10px"><img src="http://immediatenet.com/t/l?Size=800x600&URL=http://sexystatic.micy.in/<%=item.basename%>/" style="width:100%;border:solid 5px #888;" /><div style="position:absolute;right:20px;bottom:20px;font-weight:bold;"><%=item.basename%></div></a><%
+  }
+}) %>
+<div style="clear:both;"></div>
+</div>
+
+<h3>Be sexy by your self</h3>
+
+<p>You can also define custom template for SexyStatic! To use your custom template:</p>
+
+<ol>
+<li>View <a href="https://github.com/pansafe/express-sexy-static/blob/master/theme/merlot/index.html.ejs">an existing theme</a> for template data reference.</li>
+<li>Prepare a template (ejs/jade/.. whatever you can render in express) into your own <a href="http://expressjs.com/api.html#app-settings">view path</a>, and make sure it doesn't have the same name as any <a href="#themes">existing theme</a>
+</li>
+<li>Set your template name as <code>theme</code> option, then done!</li>
+</ol>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/pansafe" class="avatar"><img src="https://secure.gravatar.com/avatar/94cb1baf5e7f614b75ecf948e57055dc?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/pansafe">pansafe</a> maintains <a href="https://github.com/pansafe/express-sexy-static">Express-sexy-static</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/pansafe/express-sexy-static/tarball/master" class="tar">tar</a><a href="https://github.com/pansafe/express-sexy-static/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
