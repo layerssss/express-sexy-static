@@ -125,5 +125,9 @@ module.exports = (root, opt)->
         i++
         seg.path += '../'
       res.locals.path.push seg  
-    res.render path.join(__dirname, 'theme', options.theme, 'index.html.ejs')
+    await fs.exists path.join(__dirname, 'theme', options.theme, 'index.html.ejs'), defer exists
+    if exists
+      res.render path.join(__dirname, 'theme', options.theme, 'index.html.ejs')
+    else
+      res.render options.theme
 
