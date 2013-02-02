@@ -1,5 +1,6 @@
+expressSexyStatic = require('../..');
 module.exports=function(app){
-  app.use(expressSexyStatic(__dirname + '/../../..'),{
+  app.use('/theme-merlot', expressSexyStatic(__dirname,{
     theme: 'merlot'
-  });
+  }));
 };

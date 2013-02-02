@@ -3,20 +3,15 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
 
-    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/pygment_trac.css"/>
-    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/icomoon.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=path_to_root%>/sexy_assets/hack/stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<%=path_to_root%>/sexy_assets/hack/stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<%=path_to_root%>/sexy_assets/hack/stylesheets/print.css" media="print" />
 
-
-    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/merlot/javascripts/modernizr.js"></script>
+    <title>Viewing <%=path[path.length-1].basename %></title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/merlot/javascripts/headsmart.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        $('#main_content').headsmart();
         $('[data-action]').click(function(e){
           var $btn=$(this).parent();
           if($btn.next().hasClass('block')){
@@ -61,41 +56,30 @@
         top: 10px;
       }
     </style>
-    <title>Viewing <%=path[path.length-1].basename %></title>
   </head>
 
   <body>
-    <div class="shell">
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Viewing <%=path[path.length-1].basename %></h1>
-            <h2>
-              <% path.forEach(function(seg){ %>
+    <header>
+      <div class="container">
+        <h1>Viewing <%=path[path.length-1].basename %></h1>
+        <h2><% path.forEach(function(seg){ %>
                 <a href="<%=seg.path %>"><%=seg.basename %></a>
                 /
-              <% }) %>
-            </h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+              <% }) %></h2>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="?download=zip" class="zip"><em>download</em> .ZIP</a>
-          <a href="?download=tgz" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+        <section id="downloads">
+          <a href="?download=zip" class="btn">Download as .zip</a>
+          <a href="?download=tgz" class="btn">Download as .tar.gz</a>
+          <!-- <a href="https://github.com/pansafe/express-sexy-static" class="btn btn-github"><span class="icon"></span>View on GitHub</a> -->
+        </section>
+      </div>
+    </header>
 
-
-      <span class="banner-fix"></span>
-
-
+    <div class="container">
       <section id="main_content">
-        <h1><%=path[path.length-1].basename %></h1>
+        <h1>Viewing <%=path[path.length-1].basename %></h1>
+
         <ul>
           <li>
             <a href="<%=path_to_root%>/">[root]</a>
@@ -118,20 +102,9 @@
             </li>
           <% }) %>
         </ul>
+        <p>this directory shown via <a href="http://pansafe.github.com/express-sexy-static/">SexyStatic</a></p>
+        <p>Theme ported from Github Pages , using theme Hacked.</p>
       </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this directory shown via <a href="http://pansafe.github.com/express-sexy-static/">SexyStatic</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Theme ported from <a href="http://pages.github.com">GitHub Pages</a>'s Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
     </div>
 
     

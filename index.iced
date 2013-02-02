@@ -73,9 +73,9 @@ module.exports = (root, opt)->
     defaultIcon: '<span class="icon-file"></span>'
   options[k]=v for k,v of opt
   (req, res, next)->
+    console.log req.url
     await connect.static(root, options) req, res, defer err
     return next err if err
-
     if 0==req.url.indexOf '/sexy_assets/'
       originalUrl = req.url
       req.url = req.url.substring '/sexy_assets/'.length

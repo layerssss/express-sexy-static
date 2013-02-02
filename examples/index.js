@@ -6,7 +6,9 @@ var express = require('express')
 var examples = fs.readdirSync(__dirname);
 var app = new express()
 examples.forEach(function(example){
-  app.use('/' + example, expressSexyStatic(path.join(__dirname, example)));
+  if(fs.statSync(path.join(__dirname, example)).isDirectory()){
+    require('./'+example)(app);
+  }
 });
 app.use(expressSexyStatic(__dirname));
 http.createServer(app).listen(3000);

@@ -1,22 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+    <title>Viewing <%=path[path.length-1].basename %></title>
 
-    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/merlot/stylesheets/pygment_trac.css"/>
-    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/icomoon.css"/>
+    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/mordernist/stylesheets/styles.css">
+    <link rel="stylesheet" href="<%=path_to_root%>/sexy_assets/mordernist/stylesheets/pygment_trac.css">
+    <script src="<%=path_to_root%>/sexy_assets/mordernist/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-
-    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/merlot/javascripts/modernizr.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/merlot/javascripts/headsmart.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        $('#main_content').headsmart();
         $('[data-action]').click(function(e){
           var $btn=$(this).parent();
           if($btn.next().hasClass('block')){
@@ -61,41 +60,25 @@
         top: 10px;
       }
     </style>
-    <title>Viewing <%=path[path.length-1].basename %></title>
   </head>
-
   <body>
-    <div class="shell">
-
+    <div class="wrapper">
       <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Viewing <%=path[path.length-1].basename %></h1>
-            <h2>
-              <% path.forEach(function(seg){ %>
+        <h1>Viewing <%=path[path.length-1].basename %></h1>
+        <p><% path.forEach(function(seg){ %>
                 <a href="<%=seg.path %>"><%=seg.basename %></a>
                 /
-              <% }) %>
-            </h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
+              <% }) %></p>
+        <!-- <p class="view"><a href="https://github.com/pansafe/express-sexy-static">View the Project on GitHub <small>pansafe/express-sexy-static</small></a></p> -->
+        <ul>
+          <li><a href="?download=zip">Download <strong>ZIP File</strong></a></li>
+          <li><a href="?download=tgz">Download <strong>TAR Ball</strong></a></li>
+          <!-- <li><a href="https://github.com/pansafe/express-sexy-static">View On <strong>GitHub</strong></a></li> -->
+        </ul>
       </header>
+      <section>
+        <h1>Viewing <%=path[path.length-1].basename %></h1>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="?download=zip" class="zip"><em>download</em> .ZIP</a>
-          <a href="?download=tgz" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <h1><%=path[path.length-1].basename %></h1>
         <ul>
           <li>
             <a href="<%=path_to_root%>/">[root]</a>
@@ -119,21 +102,12 @@
           <% }) %>
         </ul>
       </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this directory shown via <a href="http://pansafe.github.com/express-sexy-static/">SexyStatic</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Theme ported from <a href="http://pages.github.com">GitHub Pages</a>'s Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
     </div>
-
+    <footer>
+      <p>this directory shown via <a href="http://pansafe.github.com/express-sexy-static/">SexyStatic</a></p>
+      <p>Theme ported from GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>

@@ -1,3 +1,4 @@
+expressSexyStatic = require('../..');
 module.exports=function(app){
-  app.use(expressSexyStatic(__dirname + '/../../..'));
+  app.use('/basic', expressSexyStatic(__dirname));
 };
