@@ -14,6 +14,8 @@ npm:
     var expressSexyStatic = require('express-sexy-static');
     app.use(new expressSexyStatic(__dirname + '/public'));
 
+[View more examples](examples/)
+
 ## Features
 
 ### Not just files
@@ -37,7 +39,7 @@ All supported friendly views:
 
 ### Be sexy
 
-A few crafted <a id="themes">sexy themes</a> are shiped with SexyStatic. Try them and pick one.
+A few crafted sexy themes are shiped with SexyStatic. Try them and pick one.
 
 View all themes at [http://sexystatic.micy.in/#themes](http://sexystatic.micy.in/#themes).
 
@@ -46,7 +48,7 @@ View all themes at [http://sexystatic.micy.in/#themes](http://sexystatic.micy.in
 You can also define custom template for SexyStatic! To use your custom template:
 
 1. View [an existing theme](https://github.com/pansafe/express-sexy-static/blob/master/theme/merlot/index.html.ejs) for template data reference.
-2. Prepare a template (ejs/jade/.. whatever you can render in express) into your own [view path](http://expressjs.com/api.html#app-settings), and make sure it doesn't have the same name as any [existing theme](#themes)
+2. Prepare a template (ejs/jade/.. whatever you can render in express) into your own [view path](http://expressjs.com/api.html#app-settings), and make sure it doesn't have the same name as any [existing theme](http://sexystatic.micy.in/#themes)
 3. Set your template name as `theme` option, then done!
 
 

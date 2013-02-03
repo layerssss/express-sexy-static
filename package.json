@@ -9,10 +9,12 @@
   "dependencies": {
     "connect": "~2.7.2",
     "ejs": "~0.8.3",
-    "express": "~3.1.0",
     "iced-coffee-script": "~1.3.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "express": "~3.1.0",
+    "marked": "~0.2.8"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

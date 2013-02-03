@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/script.js"></script>
+  <script type="text/javascript" src="javascripts/marked.js"></script>
 
   <title>Express-sexy-static</title>
   <meta name="description" content="sexy static content server for express">
@@ -36,65 +37,17 @@
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
-          <h1>Sexy Static</h1>
-
-<p>sexy static content server for express.</p>
-
-<h2>Installation</h2>
-
-<p>npm:</p>
-
-<pre><code>npm install express-sexy-static
-</code></pre>
-
-<h2>Usage</h2>
-
-<pre><code>var expressSexyStatic = require('express-sexy-static');
-app.use(new expressSexyStatic(__dirname + '/public'));
-</code></pre>
-
-<h2>Features</h2>
-
-<h3>Not just files</h3>
-
-<p>SexyStatic is a combinition of <code>connect.directory</code>, <code>connect.static</code> and more within a simple middleware. Just use it with:</p>
-
-<pre><code>app.use(expressSexyStatic(__dirname + '/public'));
-</code></pre>
-
-<h3>View like a pro</h3>
-
-<p>SexyStatic is not just a static file server. It can also view documents in a friendly way.</p>
-
-<p>All supported friendly views:</p>
-
-<ul>
-<li>images: simple preview</li>
-<li>html pages: preview via iframe</li>
-<li>text file and source code: view source via ajax</li>
-<li>markdown: preview single markdown file and README.md (rendered via <a href="https://github.com/chjj/marked">marked</a> in browser)</li>
-</ul><h3 id="#themes">Be sexy</h3>
-
-<p>A few crafted sexy themes are shiped with SexyStatic. Try them and pick one.</p>
-<div>
+<%-README%>
+<h2>Shipped with themes:</h2>
+<section id="themes">
 <% items.forEach(function(item){
   if(item.type=='directory'){
     %><a href="<%=item.basename %>/" style="display:block; position:relative; float:left;width:136px;margin:20px 10px"><img src="http://immediatenet.com/t/l?Size=800x600&URL=http://sexystatic.micy.in/<%=item.basename%>/" style="width:100%;border:solid 5px #888;" /><div style="position:absolute;right:20px;bottom:-16px;font-weight:bold;"><%=item.basename%></div></a><%
   }
 }) %>
 <div style="clear:both;"></div>
-</div>
+</section>
 
-<h3>Be sexy by your self</h3>
-
-<p>You can also define custom template for SexyStatic! To use your custom template:</p>
-
-<ol>
-<li>View <a href="https://github.com/pansafe/express-sexy-static/blob/master/theme/merlot/index.html.ejs">an existing theme</a> for template data reference.</li>
-<li>Prepare a template (ejs/jade/.. whatever you can render in express) into your own <a href="http://expressjs.com/api.html#app-settings">view path</a>, and make sure it doesn't have the same name as any <a href="#themes">existing theme</a>
-</li>
-<li>Set your template name as <code>theme</code> option, then done!</li>
-</ol>
         </article>
       </div>
     </div>
