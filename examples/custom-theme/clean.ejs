@@ -1,0 +1,15 @@
+<div>
+  <p><% path.forEach(function(seg){
+    %><a href="<%=seg.path%>"><%=seg.basename%></a>/<%
+  });%>
+  </p>
+  <% items.forEach(function(item){
+  %><p>
+    <a href="<%=item.basename + (item.type=='directory'?'/':'')%>"><%=item.basename%></a>
+    <%=item.type %>
+    <%=item.stat.size %>
+    <%=item.stat.mtime %>
+  </p>
+  <%
+  }); %>
+</div>

@@ -59,6 +59,7 @@ module.exports = (root, opt)->
       '.php': 'text'
       '.aspx': 'text'
       '.asp': 'text'
+      '.md': 'markdown'
     icons: 
       image: '<span class="icon-pictures"></span>'
       html: '<span class="icon-file-xml"></span>'
@@ -70,6 +71,7 @@ module.exports = (root, opt)->
       directory: '<span class="icon-folder"></span>'
       executable: '<span class="icon-cube"></span>'
       link: '<span class="icon-share"></span>'
+      markdown: '<span class="icon-file"></span>'
     defaultIcon: '<span class="icon-file"></span>'
   options[k]=v for k,v of opt
   (req, res, next)->

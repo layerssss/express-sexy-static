@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/marked.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
         $('[data-action]').click(function(e){
@@ -33,6 +34,16 @@
                 success:function(data){
                   $('<pre class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a><code></code></pre>')
                   .insertAfter($btn).find('code').text(data);
+                }
+              });
+              return false;
+            case 'markdown':
+              $.ajax({
+                url:this.href,
+                dataType:'text',
+                success:function(data){
+                  $('<blockquote class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a>'+marked(data)+'</blockquote>')
+                  .insertAfter($btn);
                 }
               });
               return false;
@@ -88,6 +99,17 @@
         </div>
 
         <h1>Viewing <%=path[path.length-1].basename %></h1>
+          <script>
+            $.ajax({
+              url: 'README.md',
+              dataType: 'text',
+              async: false,
+              success: function(data){
+                document.write('<h2>README.md</h2>');
+                document.write(marked(data));
+              }
+            });
+          </script>
 
         <ul>
           <li>
@@ -107,6 +129,9 @@
               <% } %>
               <% if(item.type=='image') {%>
                 <a href="<%=encodeURIComponent(item.basename)%>" data-action="image"><em>preview</em></a>
+              <% } %>
+              <% if(item.type=='markdown') {%>
+                <a href="<%=encodeURIComponent(item.basename)%>" data-action="markdown"><em>preview</em></a>
               <% } %>
             </li>
           <% }) %>

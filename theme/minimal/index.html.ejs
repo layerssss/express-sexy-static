@@ -11,6 +11,54 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/marked.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('[data-action]').click(function(e){
+          var $btn=$(this).parent();
+          if($btn.next().hasClass('block')){
+            $btn.next().remove();
+            return false;
+          }
+          $('.block').remove();
+          
+          switch(this.dataset.action){
+            case 'source':
+              $.ajax({
+                url:this.href,
+                dataType:'text',
+                success:function(data){
+                  $('<pre class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a><code></code></pre>')
+                  .insertAfter($btn).find('code').text(data);
+                }
+              });
+              return false;
+            case 'markdown':
+              $.ajax({
+                url:this.href,
+                dataType:'text',
+                success:function(data){
+                  $('<blockquote class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a>'+marked(data)+'</blockquote>')
+                  .insertAfter($btn);
+                }
+              });
+              return false;
+            case 'iframe':
+              var block=$('<blockquote class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a><iframe style="width:100%;height:100%;" src="'+this.href+'"></iframe></blockquote>')
+              .insertAfter($btn);
+              setTimeout(function(){
+                block.height($(block).width());
+              },100);
+              return false;
+            case 'image':
+              var block=$('<blockquote class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a><img style="max-width:90%" src="'+this.href+'"/></blockquote>')
+              .insertAfter($btn);
+              return false;
+          }
+        });
+      });
+    </script>
   </head>
   <body>
     <div class="wrapper">
@@ -29,6 +77,17 @@
       </header>
       <section>
         <h1>Viewing <%=path[path.length-1].basename %></h1>
+          <script>
+            $.ajax({
+              url: 'README.md',
+              dataType: 'text',
+              async: false,
+              success: function(data){
+                document.write('<h2>README.md</h2>');
+                document.write(marked(data));
+              }
+            });
+          </script>
 
         <ul>
           <li>
@@ -48,6 +107,9 @@
               <% } %>
               <% if(item.type=='image') {%>
                 <a href="<%=encodeURIComponent(item.basename)%>" data-action="image"><em>preview</em></a>
+              <% } %>
+              <% if(item.type=='markdown') {%>
+                <a href="<%=encodeURIComponent(item.basename)%>" data-action="markdown"><em>preview</em></a>
               <% } %>
             </li>
           <% }) %>

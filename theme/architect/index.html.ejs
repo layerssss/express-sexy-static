@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<%=path_to_root%>/sexy_assets/architect/stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="<%=path_to_root%>/sexy_assets/architect/stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="<%=path_to_root%>/sexy_assets/architect/stylesheets/print.css" media="print" />
-
+    <script type="text/javascript" src="<%=path_to_root%>/sexy_assets/marked.js"></script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -33,6 +33,16 @@
                 success:function(data){
                   $('<pre class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a><code></code></pre>')
                   .insertAfter($btn).find('code').text(data);
+                }
+              });
+              return false;
+            case 'markdown':
+              $.ajax({
+                url:this.href,
+                dataType:'text',
+                success:function(data){
+                  $('<blockquote class="block"><a href="#" class="close" onclick="$(this).parent().remove();return false;">x</a>'+marked(data)+'</blockquote>')
+                  .insertAfter($btn);
                 }
               });
               return false;
@@ -79,7 +89,17 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>Viewing <%=path[path.length-1].basename %></h1>
-
+          <script>
+            $.ajax({
+              url: 'README.md',
+              dataType: 'text',
+              async: false,
+              success: function(data){
+                document.write('<h2>README.md</h2>');
+                document.write(marked(data));
+              }
+            });
+          </script>
         <ul>
           <li>
             <a href="<%=path_to_root%>/">[root]</a>
@@ -98,6 +118,9 @@
               <% } %>
               <% if(item.type=='image') {%>
                 <a href="<%=encodeURIComponent(item.basename)%>" data-action="image"><em>preview</em></a>
+              <% } %>
+              <% if(item.type=='markdown') {%>
+                <a href="<%=encodeURIComponent(item.basename)%>" data-action="markdown"><em>preview</em></a>
               <% } %>
             </li>
           <% }) %>
