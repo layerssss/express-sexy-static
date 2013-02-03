@@ -22,9 +22,8 @@ npm:
 
 SexyStatic is a combinition of `connect.directory`, `connect.static` and more within a simple middleware. Just use it with:
 
-    ```
     app.use(expressSexyStatic(__dirname + '/public'));
-    ```
+
 
 ### View like a pro
 
@@ -37,13 +36,13 @@ All supported friendly views:
 * text file and source code: view source via ajax
 * markdown: preview single markdown file and README.md (rendered via [marked](https://github.com/chjj/marked) in browser)
 
-### Be sexy
+### Themes
 
 A few crafted sexy themes are shiped with SexyStatic. Try them and pick one.
 
 View all themes at [http://sexystatic.micy.in/#themes](http://sexystatic.micy.in/#themes).
 
-### Be sexy by your self
+### Custom theme
 
 You can also define custom template for SexyStatic! To use your custom template:
 
