@@ -1,6 +1,6 @@
 {
   "name": "express-sexy-static",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "connect": {
       "version": "2.7.2",
@@ -68,11 +68,6 @@
           "from": "debug@*"
         }
       }
-    },
-    "iced-coffee-script": {
-      "version": "1.4.0b",
-      "from": "iced-coffee-script@~1.4.0",
-      "resolved": "http://registry.npmjs.org/iced-coffee-script/-/iced-coffee-script-1.4.0b.tgz"
     },
     "ejs": {
       "version": "0.8.3",
@@ -153,6 +148,11 @@
           "from": "debug@*"
         }
       }
+    },
+    "iced-coffee-script": {
+      "version": "1.4.0b",
+      "from": "iced-coffee-script@~1.4.0",
+      "resolved": "http://registry.npmjs.org/iced-coffee-script/-/iced-coffee-script-1.4.0b.tgz"
     }
   }
 }
