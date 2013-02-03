@@ -2,7 +2,8 @@ fs = require 'fs'
 url = require 'url'
 path = require 'path'
 connect = require 'connect'
-
+querystring = require 'querystring'
+spawn = require('child_process').spawn
 
 module.exports = (root, opt)->
   options = 
@@ -75,7 +76,7 @@ module.exports = (root, opt)->
     defaultIcon: '<span class="icon-file"></span>'
   options[k]=v for k,v of opt
   (req, res, next)->
-    console.log req.url
+
     await connect.static(root, options) req, res, defer err
     return next err if err
     if 0==req.url.indexOf '/sexy_assets/'
@@ -86,7 +87,10 @@ module.exports = (root, opt)->
       req.url = originalUrl
 
     
-    dstpath = path.join root, decodeURIComponent req.url.substring 1
+    request = url.parse req.url
+    request.query = querystring.parse request.query if request.query
+
+    dstpath = path.join root, decodeURIComponent request.pathname.substring 1
     return next() if 'GET' != req.method && 'HEAD' != req.method
 
     await fs.exists dstpath, defer exists
@@ -94,6 +98,48 @@ module.exports = (root, opt)->
     await fs.stat dstpath, defer err, stat
     return next err if err
     return next() if !stat.isDirectory()
+
+    if request.query && request.query.download=='zip'
+      zip = spawn("zip", ["-rj", "-", dstpath])
+      res.contentType "application/x-zip"
+      basename = dstpath.split '/'
+      basename = basename[basename.length-1]||'root'
+      res.setHeader 'Content-Disposition', "attachment; filename=\"#{basename}.zip\""
+      # Keep writing stdout to res
+      zip.stdout.on "data", (data) ->
+        res.write data
+      # zip.stderr.on "data", (data) ->
+      #   console.error data.toString 'utf8'
+      # End the response on zip exit
+      zip.on "exit", (code) ->
+        if code isnt 0
+          res.statusCode = 500
+          console.log "zip process exited with code " + code
+          res.end()
+        else
+          res.end()
+      return
+    if request.query && request.query.download=='tgz'
+      tar = spawn "tar", ["-cz", "."], 
+        cwd: dstpath
+      res.type "application/x-tgz"
+      basename = dstpath.split '/'
+      basename = basename[basename.length-1]||'root'
+      res.setHeader 'Content-Disposition', "attachment; filename=\"#{basename}.tar.gz\""
+      # Keep writing stdout to res
+      tar.stdout.on "data", (data) ->
+        res.write data
+      # tar.stderr.on "data", (data) ->
+      #   console.error data.toString 'utf8'
+      # End the response on tar exit
+      tar.on "exit", (code) ->
+        if code isnt 0
+          res.statusCode = 500
+          console.log "tar process exited with code " + code
+          res.end()
+        else
+          res.end()
+      return
 
     await fs.readdir dstpath, defer err, files
     return next err if err
@@ -112,7 +158,7 @@ module.exports = (root, opt)->
       item.type = if stat.isDirectory() then 'directory' else options.types[item.extname.toLowerCase()]
       item.icon = options.icons[item.type]||options.defaultIcon
       res.locals.items.push item
-    segs = req.url.replace(/(^\/)|(\/$)/g,'').split('/').filter((seg)->seg)
+    segs = request.pathname.replace(/(^\/)|(\/$)/g,'').split('/').filter((seg)->seg)
 
     res.locals.path_to_root = segs.map((seg)->'..').join('/')||'.'
     res.locals.path = [
