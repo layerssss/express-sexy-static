@@ -79,7 +79,7 @@ app.use(new expressSexyStatic(__dirname + '/public'));
 <div>
 <% items.forEach(function(item){
   if(item.type=='directory'){
-    %><a href="<%=item.basename %>/" style="display:block; position:relative; float:left;width:136px;margin:10px"><img src="http://immediatenet.com/t/l?Size=800x600&URL=http://sexystatic.micy.in/<%=item.basename%>/" style="width:100%;border:solid 5px #888;" /><div style="position:absolute;right:20px;bottom:20px;font-weight:bold;"><%=item.basename%></div></a><%
+    %><a href="<%=item.basename %>/" style="display:block; position:relative; float:left;width:136px;margin:20px 10px"><img src="http://immediatenet.com/t/l?Size=800x600&URL=http://sexystatic.micy.in/<%=item.basename%>/" style="width:100%;border:solid 5px #888;" /><div style="position:absolute;right:20px;bottom:-16px;font-weight:bold;"><%=item.basename%></div></a><%
   }
 }) %>
 <div style="clear:both;"></div>
