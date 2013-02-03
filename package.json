@@ -10,7 +10,7 @@
     "connect": "~2.7.2",
     "ejs": "~0.8.3",
     "express": "~3.1.0",
-    "iced-coffee-script": "~1.4.0b"
+    "iced-coffee-script": "~1.3.3"
   },
   "devDependencies": {},
   "scripts": {
@@ -26,5 +26,6 @@
   ],
   "author": "Michael Yin",
   "license": "BSD",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "gitHead": "e1cdbb6628ba9dd0dda655d98a87d767eefb15e0"
 }
