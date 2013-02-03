@@ -13,5 +13,5 @@ for theme in fs.readdirSync path.join __dirname, '..', 'theme'
 app.use express.static __dirname
 app.use expressSexyStatic path.join(__dirname, '..', 'theme'),
   theme: path.join __dirname, 'index.html.ejs'
-  filter: (tf)->!(tf in ['font','icomoon.css'])
+  filter: (tf)->!(tf in ['fonts','icomoon.css'])
 module.exports = app
