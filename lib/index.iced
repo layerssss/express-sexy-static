@@ -1,9 +1,23 @@
 fs = require 'fs'
 url = require 'url'
 path = require 'path'
-connect = require 'connect'
+send = require 'send'
 querystring = require 'querystring'
 spawn = require('child_process').spawn
+
+
+simpleStatic = (root, opt)->
+  options ={}
+  options[k] = v for k,v of opt
+  (req, res, cb)->
+    directory = ->
+      pathname = url.parse(req.originalUrl).pathname
+      res.statusCode = 301
+      res.setHeader "Location", pathname + "/"
+      res.end "Redirecting to " + escape(pathname) + "/"
+    await send(req, url.parse(req.url).pathname).maxage(options.maxAge or 0).root(root).hidden(options.hidden).on("directory", directory).on("error", defer err).pipe(res)
+    return cb err if err.status!=404
+    cb()
 
 module.exports = (root, opt)->
   options = 
@@ -75,14 +89,15 @@ module.exports = (root, opt)->
       markdown: '<span class="icon-file"></span>'
     defaultIcon: '<span class="icon-file"></span>'
   options[k]=v for k,v of opt
-  (req, res, next)->
 
-    await connect.static(root, options) req, res, defer err
+  (req, res, next)->
+    return next()  if "GET" isnt req.method and "HEAD" isnt req.method
+    await simpleStatic(root) req, res, defer err
     return next err if err
     if 0==req.url.indexOf '/sexy_assets/'
       originalUrl = req.url
       req.url = req.url.substring '/sexy_assets/'.length
-      await connect.static(path.join(__dirname, '..', 'theme'), options) req, res, defer err
+      await simpleStatic(path.join(__dirname, '..', 'theme'), options) req, res, defer err
       return next err if err
       req.url = originalUrl
 
@@ -91,7 +106,7 @@ module.exports = (root, opt)->
     request.query = querystring.parse request.query if request.query
 
     dstpath = path.join root, decodeURIComponent request.pathname.substring 1
-    return next() if 'GET' != req.method && 'HEAD' != req.method
+    
 
     await fs.exists dstpath, defer exists
     return next() if !exists

@@ -1,15 +1,15 @@
 {
   "name": "express-sexy-static",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "sexy static content server for express",
   "main": "lib/index.js",
   "directories": {
     "example": "examples"
   },
   "dependencies": {
-    "connect": ">=2.5.0",
     "ejs": "*",
-    "iced-coffee-script": "*"
+    "iced-coffee-script": "*",
+    "send": "*"
   },
   "devDependencies": {
     "express": ">=3.0.0",
