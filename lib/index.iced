@@ -7,7 +7,8 @@ spawn = require('child_process').spawn
 
 
 simpleStatic = (root, opt)->
-  options ={}
+  options =
+    index: false
   options[k] = v for k,v of opt
   (req, res, cb)->
     directory = ->
@@ -15,7 +16,7 @@ simpleStatic = (root, opt)->
       res.statusCode = 301
       res.setHeader "Location", pathname + "/"
       res.end "Redirecting to " + escape(pathname) + "/"
-    await send(req, url.parse(req.url).pathname).maxage(options.maxAge or 0).root(root).hidden(options.hidden).on("directory", directory).on("error", defer err).pipe(res)
+    await send(req, url.parse(req.url).pathname).maxage(options.maxAge or 0).root(root).hidden(options.hidden).index(options.index).on("directory", directory).on("error", defer err).pipe(res)
     return cb err if err.status!=404
     cb()
 
