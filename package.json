@@ -26,7 +26,11 @@
     "express",
     "static"
   ],
-  "author": "Michael Yin",
+  "author": {
+    "name": "Michael Yin",
+    "email": "layerssss@gmail.com"
+  },
+  "homepage": "http://sexystatic.micy.in/",
   "license": "BSD",
   "readmeFilename": "README.md",
   "gitHead": "e1cdbb6628ba9dd0dda655d98a87d767eefb15e0"
