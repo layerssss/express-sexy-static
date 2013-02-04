@@ -1,6 +1,6 @@
 {
   "name": "express-sexy-static",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "sexy static content server for express",
   "main": "lib/index.js",
   "directories": {
@@ -8,12 +8,12 @@
   },
   "dependencies": {
     "connect": ">=2.5.0",
-    "ejs": ">=0.8.3",
-    "iced-coffee-script": ">=1.3.3"
+    "ejs": "*",
+    "iced-coffee-script": "*"
   },
   "devDependencies": {
-    "express": "~3.1.0",
-    "marked": "~0.2.8"
+    "express": ">=3.0.0",
+    "marked": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
