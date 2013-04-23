@@ -1,6 +1,6 @@
 {
   "name": "express-sexy-static",
-  "version": "0.0.8",
+  "version": "0.0.12",
   "description": "sexy static content server for express",
   "main": "lib/index.js",
   "directories": {

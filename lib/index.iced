@@ -3,8 +3,8 @@ url = require 'url'
 path = require 'path'
 send = require 'send'
 querystring = require 'querystring'
-spawn = require('child_process').spawn
-
+{spawn} = require 'child_process'
+ejs = require 'ejs'
 
 simpleStatic = (root, opt)->
   options =
@@ -193,7 +193,18 @@ module.exports = (root, opt)->
       res.locals.path.push seg  
     await fs.exists path.join(__dirname, '..', 'theme', options.theme, 'index.html.ejs'), defer exists
     if exists
-      res.render path.join(__dirname, '..', 'theme', options.theme, 'index.html.ejs')
+      await fs.readFile path.join(__dirname, '..', 'theme', options.theme, 'index.html.ejs'), 'utf8', defer e, data
+      return next e if e
+      
+      locals = {}
+      locals[k] = v for k, v of res.app.locals
+      locals[k] = v for k, v of res.locals
+      try
+        data = ejs.compile data
+        data = data locals
+      catch e
+        return next e
+      res.send data
     else
       res.render options.theme
 
